@@ -7,19 +7,18 @@ class ApiClient private constructor() {
 
     val api: ApiInterface
         get() = retrofit!!.create(
-            ApiInterface::class.java)
+            ApiInterface::class.java
+        )
 
     init {
-
         retrofit =
             Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())
                 .build()
-
     }
 
     companion object {
 
-        private val BASE_URL = "http://morozvw6.beget.tech/"
+        private const val BASE_URL = "http://morozvw6.beget.tech/"
 
         private var apiClient: ApiClient? = null
         private var retrofit: Retrofit? = null
@@ -28,15 +27,11 @@ class ApiClient private constructor() {
             @Synchronized get() {
 
                 if (apiClient == null) {
-
                     apiClient =
                         ApiClient()
                 }
 
                 return apiClient
-
-
             }
-
     }
 }

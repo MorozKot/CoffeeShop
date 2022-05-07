@@ -15,12 +15,11 @@ interface ApiInterface {
     fun loadCoffeeApi(): Call<ArrayList<CoffeeApiModel>>
 
     @FormUrlEncoded
-    @POST("insert.php")
+    @POST("insertToServer.php")
     fun insert(
-        @Field("name") name: String?,
-        @Field("phone") phone: String?,
-        @Field("description") description: String?,
-        @Field("priceOrder") priceOrder: String?,
+        @Field("nameOrder") name: String?,
+        @Field("phoneOrder") phone: String?,
+        @Field("descriptionOrder") description: String?,
+        @Field("priceOrderOrder") priceOrder: String?,
     ): Call<ResponseBody?>?
-
 }

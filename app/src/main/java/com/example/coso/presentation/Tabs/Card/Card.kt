@@ -1,11 +1,11 @@
 package com.example.coso.presentation.Tabs.Card
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,13 +17,11 @@ import com.example.coso.presentation.viewModels.CardViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class Card : Fragment(),View.OnClickListener {
+class Card : Fragment(), View.OnClickListener {
 
     private var binding: CardBinding? = null
     private var cardAdapter: CardAdapter? = null
     private val cardViewModel: CardViewModel by viewModel()
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +44,7 @@ class Card : Fragment(),View.OnClickListener {
         binding?.listCard?.layoutManager =
             LinearLayoutManager(context)
         cardAdapter =
-            CardAdapter ({ cardModel: CardModel ->
+            CardAdapter({ cardModel: CardModel ->
                 deleteFromCard(
                     cardModel
                 )
@@ -60,7 +58,6 @@ class Card : Fragment(),View.OnClickListener {
                 )
             })
         binding?.listCard?.adapter = cardAdapter
-
     }
 
     private fun loadCoffeeFromCard() {
@@ -69,78 +66,64 @@ class Card : Fragment(),View.OnClickListener {
             cardAdapter?.setList(it)
             cardAdapter?.notifyDataSetChanged()
 
-            val total:Int = it.sumOf<CardModel> { it.totalPrice.toInt() }
+            val total: Int = it.sumOf<CardModel> { it.totalPrice.toInt() }
 
             binding?.totalOrder?.text = total.toString()
-
-
         })
-
-
     }
 
-    private fun deleteFromCard(cardModel: CardModel){
+    private fun deleteFromCard(cardModel: CardModel) {
 
         cardViewModel.deleteProductFromCard(cardModel.id)
     }
 
     override fun onClick(view: View) {
-        when(view.id) {
+        when (view.id) {
             R.id.clearCard -> cardViewModel.clearCard()
 
             R.id.checkoutCard -> {
 
                 val checkout = Checkout()
                 checkout.show((context as FragmentActivity).supportFragmentManager, "checkout")
-
             }
         }
     }
 
-    private fun lessCount(cardModel:CardModel) {
+    private fun lessCount(cardModel: CardModel) {
 
         var count: Int = cardModel.count.toInt()
         count--
 
-        if (count<1) {
+        if (count < 1) {
             cardViewModel.updateProductToCard(
-                CardModel(cardModel.id, cardModel.name,
+                CardModel(
+                    cardModel.id, cardModel.name,
                     cardModel.image, cardModel.price, cardModel.idProduct, "1",
-                    (cardModel.price.toInt()*1).toString())
+                    (cardModel.price.toInt() * 1).toString()
+                )
             )
-
-        }
-        else {
-
+        } else {
             cardViewModel.updateProductToCard(
-                CardModel(cardModel.id, cardModel.name,
+                CardModel(
+                    cardModel.id, cardModel.name,
                     cardModel.image, cardModel.price, cardModel.idProduct, count.toString(),
-                    (cardModel.price.toInt()*count).toString())
+                    (cardModel.price.toInt() * count).toString()
+                )
             )
-
         }
-
-
-
-
     }
 
-    private fun moreCount(cardModel:CardModel) {
+    private fun moreCount(cardModel: CardModel) {
 
         var count: Int = cardModel.count.toInt()
         count++
 
-
-
         cardViewModel.updateProductToCard(
-            CardModel(cardModel.id, cardModel.name,
-            cardModel.image, cardModel.price, cardModel.idProduct, count.toString(),
-                (cardModel.price.toInt()*count).toString())
+            CardModel(
+                cardModel.id, cardModel.name,
+                cardModel.image, cardModel.price, cardModel.idProduct, count.toString(),
+                (cardModel.price.toInt() * count).toString()
+            )
         )
-
-
-
     }
-
-
 }

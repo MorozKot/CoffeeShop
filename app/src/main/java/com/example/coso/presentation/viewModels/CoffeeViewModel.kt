@@ -10,10 +10,7 @@ class CoffeeViewModel (private val coffeeUseCase: CoffeeUseCase): ViewModel() {
 
     val loadCoffee = coffeeUseCase.loadCoffee()
 
-
     fun migration(context: Context) = viewModelScope.launch {
         coffeeUseCase.startMigration(context)
-
     }
-
 }

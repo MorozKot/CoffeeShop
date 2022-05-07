@@ -3,7 +3,6 @@ package com.example.coso.data.localDB
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.coso.data.models.CardModel
-import com.example.coso.data.models.CoffeeModel
 
 @Dao
 interface CardDao {

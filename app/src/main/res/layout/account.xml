@@ -6,7 +6,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.Tabs.Account.Account">
+        tools:context=".presentation.Tabs.Account.Account"
+        android:background="@color/black">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -31,10 +32,7 @@
                 android:textColor="@color/black"
                 android:text="@string/clearOrders"/>
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
     </FrameLayout>
 

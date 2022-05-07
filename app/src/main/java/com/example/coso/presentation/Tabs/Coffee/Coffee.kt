@@ -1,12 +1,12 @@
 package com.example.coso.presentation.Tabs.Coffee
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coso.R
@@ -23,8 +23,6 @@ class Coffee : Fragment() {
     private var coffeeAdapter: CoffeeAdapter? = null
     private val coffeeViewModel: CoffeeViewModel by viewModel()
     private val cardViewModel: CardViewModel by viewModel()
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +42,7 @@ class Coffee : Fragment() {
         binding?.catalogCoffee?.layoutManager =
             LinearLayoutManager(context)
         coffeeAdapter =
-            CoffeeAdapter ({ coffeeModel: CoffeeModel ->
+            CoffeeAdapter({ coffeeModel: CoffeeModel ->
                 addToCard(
                     coffeeModel
                 )
@@ -52,14 +50,13 @@ class Coffee : Fragment() {
                 removeFromCard(
                     coffeeModel
                 )
-            }, { idProduct:Int, addToBasket: AppCompatImageButton,
-                 removeFromBasket:AppCompatImageButton ->
+            }, { idProduct: Int, addToBasket: AppCompatImageButton,
+                 removeFromBasket: AppCompatImageButton ->
                 loadCoffeeToCardFromCardProduct(
                     idProduct, addToBasket, removeFromBasket
                 )
             })
         binding?.catalogCoffee?.adapter = coffeeAdapter
-
     }
 
     private fun loadCoffee() {
@@ -68,35 +65,36 @@ class Coffee : Fragment() {
             coffeeAdapter?.setList(it)
             coffeeAdapter?.notifyDataSetChanged()
         })
-
-
     }
 
     private fun addToCard(coffeeModel: CoffeeModel) {
-        cardViewModel.startInsert(coffeeModel.name, coffeeModel.image, coffeeModel.price, coffeeModel.id.toString(),
-            "1")
+        cardViewModel.startInsert(
+            coffeeModel.name, coffeeModel.image, coffeeModel.price, coffeeModel.id.toString(),
+            "1"
+        )
     }
 
     private fun removeFromCard(coffeeModel: CoffeeModel) {
         cardViewModel.deleteProductToCardFromCardProduct(coffeeModel.id.toString())
     }
 
-    private fun loadCoffeeToCardFromCardProduct (idProduct:Int, addToBasket: AppCompatImageButton,
-                                                 removeFromBasket:AppCompatImageButton){
+    private fun loadCoffeeToCardFromCardProduct(
+        idProduct: Int, addToBasket: AppCompatImageButton,
+        removeFromBasket: AppCompatImageButton
+    ) {
 
-        cardViewModel.loadCoffeeToCardFromCardProduct(idProduct.toString()).observe(viewLifecycleOwner, Observer {
+        cardViewModel.loadCoffeeToCardFromCardProduct(idProduct.toString())
+            .observe(viewLifecycleOwner, Observer {
 
-            val count = it.count()
+                val count = it.count()
 
-            if (count>0) {
-                addToBasket.visibility = View.GONE
-                removeFromBasket.visibility = View.VISIBLE
-            }
-            else {
-                addToBasket.visibility = View.VISIBLE
-                removeFromBasket.visibility = View.GONE }
-        })
-
+                if (count > 0) {
+                    addToBasket.visibility = View.GONE
+                    removeFromBasket.visibility = View.VISIBLE
+                } else {
+                    addToBasket.visibility = View.VISIBLE
+                    removeFromBasket.visibility = View.GONE
+                }
+            })
     }
-
 }
