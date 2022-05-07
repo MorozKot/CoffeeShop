@@ -1,24 +1,14 @@
 package com.example.coso.data.repository
 
-import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import com.example.coso.data.dataSource.CoffeeApiDataSource
-import com.example.coso.data.dataSource.CoffeeDataSource
 import com.example.coso.data.localDB.CardDao
 import com.example.coso.data.models.CardModel
-import com.example.coso.data.models.CoffeeModel
 import com.example.coso.domain.repository.CardCall
-import com.example.coso.domain.repository.CoffeeCall
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CardRepository (private val dao: CardDao): CardCall {
-
-    //val products = dao.loadCoffee()
 
     override suspend fun insert(cardModel: CardModel) {
        dao.insert(cardModel)    }
@@ -45,11 +35,4 @@ class CardRepository (private val dao: CardDao): CardCall {
 
     override suspend fun clear() {
         dao.clear()    }
-
-
-
-
-
-
-
 }

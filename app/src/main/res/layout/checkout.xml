@@ -6,7 +6,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.Tabs.Checkout">
+        tools:context=".presentation.Tabs.Checkout"
+        android:background="@color/black">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -82,10 +83,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:textColor="@color/orange"/>
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
     </FrameLayout>
 

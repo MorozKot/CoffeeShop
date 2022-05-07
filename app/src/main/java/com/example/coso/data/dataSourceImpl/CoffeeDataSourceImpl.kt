@@ -1,4 +1,4 @@
-package com.example.coso.data.dataSourceIMPL
+package com.example.coso.data.dataSourceImpl
 
 import androidx.lifecycle.LiveData
 import com.example.coso.data.dataSource.CoffeeDataSource
@@ -8,9 +8,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CoffeeDataSourceIMPL(private val dao: CoffeeDao):
+class CoffeeDataSourceImpl(private val dao: CoffeeDao):
     CoffeeDataSource {
-
 
     override fun insert(coffeeModel: CoffeeModel) {
         CoroutineScope(Dispatchers.IO).launch {
@@ -21,12 +20,8 @@ class CoffeeDataSourceIMPL(private val dao: CoffeeDao):
         return dao.loadCoffee()
     }
 
-
     override suspend fun clear() {
         CoroutineScope(Dispatchers.IO).launch {
             dao.clear()}
     }
-
-
-
 }

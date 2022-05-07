@@ -10,8 +10,10 @@ import com.example.coso.data.models.CardModel
 import com.example.coso.databinding.CardItemBinding
 import com.squareup.picasso.Picasso
 
-class CardAdapter  (private val deleteFromCard:(CardModel)->Unit, private val lessCount:(CardModel)->Unit,
-                    private val moreCount:(CardModel)->Unit):
+class CardAdapter(
+    private val deleteFromCard: (CardModel) -> Unit, private val lessCount: (CardModel) -> Unit,
+    private val moreCount: (CardModel) -> Unit
+) :
     RecyclerView.Adapter<CardAdapter.CardHolder>() {
 
     private val productsFromCard = ArrayList<CardModel>()
@@ -28,32 +30,26 @@ class CardAdapter  (private val deleteFromCard:(CardModel)->Unit, private val le
         return productsFromCard.size
     }
 
-
-
     override fun onBindViewHolder(holder: CardHolder, position: Int) {
-        holder.bind(productsFromCard[position], deleteFromCard,
-        moreCount, lessCount)
-
+        holder.bind(
+            productsFromCard[position], deleteFromCard,
+            moreCount, lessCount
+        )
     }
 
     fun setList(cardList: List<CardModel>) {
         productsFromCard.clear()
         productsFromCard.addAll(cardList)
-
     }
 
-
-
     class CardHolder(val binding: CardItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
-
         fun bind(
             cardModel: CardModel, deleteFromCard: (CardModel) -> Unit,
             moreCount: (CardModel) -> Unit, lessCount: (CardModel) -> Unit
         ) {
-
             val getImage = cardModel.image
             Picasso.get().load(getImage).into(binding.imageProductCard)
+
             binding.nameProductCard.text = cardModel.name
             binding.countProductBasket.text = cardModel.count
             binding.priceProductCard.text = cardModel.price
@@ -65,23 +61,11 @@ class CardAdapter  (private val deleteFromCard:(CardModel)->Unit, private val le
 
             binding.moreProductBasket.setOnClickListener(View.OnClickListener {
                 moreCount(cardModel)
-
             })
 
             binding.lessProductBasket.setOnClickListener(View.OnClickListener {
                 lessCount(cardModel)
-
             })
-
-
-
         }
-
-
-
-
-
-
     }
-
 }

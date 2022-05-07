@@ -6,7 +6,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.Tabs.Home">
+        tools:context=".presentation.Tabs.Home"
+        android:background="@color/black">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -59,14 +60,11 @@
                 app:tabPaddingBottom="8dp"
                 app:tabMode="fixed"
                 app:tabBackground="@drawable/tabs"
+                android:background="@color/black"
                 app:tabIndicatorHeight="0dp"/>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
     </FrameLayout>
-
 
 </layout>

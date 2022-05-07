@@ -11,5 +11,4 @@ abstract class DataBaseCoffee: RoomDatabase() {
     abstract val cardDao: CardDao
     abstract val coffeeDao: CoffeeDao
     abstract val orderLocalDao: OrderLocalDao
-
 }

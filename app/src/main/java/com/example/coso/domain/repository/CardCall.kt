@@ -1,9 +1,6 @@
 package com.example.coso.domain.repository
-
-import android.content.Context
 import androidx.lifecycle.LiveData
 import com.example.coso.data.models.CardModel
-import com.example.coso.data.models.CoffeeModel
 
 interface CardCall {
 
@@ -20,5 +17,4 @@ interface CardCall {
     suspend fun deleteProductToCardFromCardProduct(idProduct:String)
 
     suspend fun clear()
-
 }
